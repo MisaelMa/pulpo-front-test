@@ -58,7 +58,7 @@ const index = defineComponent({
   components: {
     DialogVehicle,
   },
-  // middleware: "authRedirect",
+  middleware: "authRedirect",
   setup() {
     const search = ref('')
     const vehicles = ref<Paginate<Vehicle>>({

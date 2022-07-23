@@ -91,6 +91,7 @@ export default defineComponent({
     watch(
       () => dialog.dVehicle,
       () => {
+        // @ts-ignore
         if (props.vehicleEdit._id) {
           const data = props.vehicleEdit as unknown as Vehicle
           vehicle.value = { ...data }
@@ -114,6 +115,7 @@ export default defineComponent({
       if (form.value.validate()) {
         if (vehicle.value._id === 0) {
           const data = { ...vehicle.value }
+            // @ts-ignore
           delete data._id
           data.fechaIngreso = new Date().toLocaleString()
           const newData = await vehiclesService.saveOne(data)

@@ -117,11 +117,12 @@ const index = defineComponent({
           const response = await authService.loginPost(state.user);
           loading.value = false;
           store.commit("setLoggedIn", true);
-          store.commit("setUser", response.data);
+          store.commit("setUser", response);
           // @ts-ignore
           Cookiesjs.set("isAuth", true);
-          Cookiesjs.set("Auth", JSON.stringify(response.data));
-          router.push("/reportes");
+          Cookiesjs.set("Auth", JSON.stringify(response));
+          Cookiesjs.set("token", response.token);
+         window.location.replace("/");
         } catch (e) {
           loading.value = false;
           console.log("error en validacion");
