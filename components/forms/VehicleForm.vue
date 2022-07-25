@@ -63,7 +63,7 @@
   </v-dialog>
 </template>
 <script lang="ts">
-import { Data, defineComponent, ref, watch } from '@nuxtjs/composition-api'
+import { Data, defineComponent, ref, watch } from 'vue'
 import { dialog } from '../../commons/share/state/dialog'
 import { marcas, years, colors } from '../../commons/share/catalogue'
 

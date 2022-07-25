@@ -46,7 +46,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, onMounted, ref } from '@nuxtjs/composition-api'
+import { defineComponent, onMounted, ref } from 'vue'
 import { headersVehicles } from '../commons/helpers/headers'
 import { vehiclesService } from '../commons/services'
 import { dialog } from '../commons/share/state/dialog'

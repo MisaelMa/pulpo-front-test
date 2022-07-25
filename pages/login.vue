@@ -70,12 +70,11 @@ import {
   defineComponent,
   ref,
   reactive,
-  useStore,
-  useRouter
-} from "@nuxtjs/composition-api";
+} from "vue";
 import Cookiesjs from "js-cookie";
 import { AuthType } from "../commons/types/auth.model";
 import { authService } from "../commons/services";
+import { useStore } from "../commons/hooks/useNuxt";
 // @ts-ignore
 interface State {
   user: AuthType;
@@ -108,7 +107,7 @@ const index = defineComponent({
     };
     const refs = ref(null);
     const store = useStore()
-    const router = useRouter()
+    // const router = useRouter()
     const login = async () => {
       // @ts-ignore
       if (refs.value.validate()) {

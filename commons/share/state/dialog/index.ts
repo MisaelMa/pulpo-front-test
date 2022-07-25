@@ -1,4 +1,4 @@
-import { reactive } from '@nuxtjs/composition-api'
+import { reactive } from 'vue'
 
 export const dialog = reactive({
   dVehicle: false,
