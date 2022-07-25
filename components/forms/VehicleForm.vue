@@ -9,25 +9,31 @@
         <br />
         <v-form ref="form" lazy-validation>
           <v-autocomplete
+            id="marca"
             v-model="vehicle.marca"
             :items="marcas"
+            name="marca"
             :rules="[(v) => !!v || 'Marca es requerido']"
             outlined
             dense
             label="Marca"
           ></v-autocomplete>
           <v-autocomplete
+            id="modelo"
             v-model="vehicle.modelo"
             :items="years"
             :rules="[(v) => !!v || 'Modelo es requerido']"
             outlined
+            name="modelo"
             dense
             label="Modelo"
           ></v-autocomplete>
           <v-select
+            id="color"
             v-model="vehicle.color"
             :items="colors"
             label="Color"
+            name="color"
             item-text="label"
             :rules="[(v) => !!v || 'Color es requerido']"
             required
@@ -36,17 +42,21 @@
           ></v-select>
 
           <v-text-field
+            id="asignado"
             v-model="vehicle.asignado"
             label="Asignado"
             required
+            name="asignado"
             :rules="[(v) => !!v || 'Necesita ser asignado']"
             dense
             outlined
           ></v-text-field>
 
           <v-checkbox
+            id="estado"
             v-model="vehicle.estado"
             label="Estado"
+            name="estado"
             required
           ></v-checkbox>
         </v-form>
@@ -56,7 +66,13 @@
 
       <v-card-actions>
         <v-spacer></v-spacer>
-             <v-btn color="primary" text @click="dialog.dVehicle=false,close()"> Cancelar </v-btn>
+        <v-btn
+          color="primary"
+          text
+          @click=";(dialog.dVehicle = false), close()"
+        >
+          Cancelar
+        </v-btn>
         <v-btn color="primary" text @click="save()"> Agregar </v-btn>
       </v-card-actions>
     </v-card>
@@ -115,7 +131,7 @@ export default defineComponent({
       if (form.value.validate()) {
         if (vehicle.value._id === 0) {
           const data = { ...vehicle.value }
-            // @ts-ignore
+          // @ts-ignore
           delete data._id
           data.fechaIngreso = new Date().toLocaleString()
           const newData = await vehiclesService.saveOne(data)
@@ -130,6 +146,10 @@ export default defineComponent({
         }
       }
     }
+
+    const openDialog = () => {
+      dialog.dVehicle = !dialog.dVehicle
+    }
     return {
       form,
       vehicle,
@@ -139,6 +159,7 @@ export default defineComponent({
       colors,
       save,
       close,
+      openDialog,
     }
   },
 })
