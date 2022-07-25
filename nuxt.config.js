@@ -1,4 +1,6 @@
 export default {
+  // target
+	target: 'server',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s - pulpo-front',
@@ -50,10 +52,6 @@ export default {
       lang: 'en',
     },
   },
-
-  // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
-  vuetify: {  },
-
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
 }
