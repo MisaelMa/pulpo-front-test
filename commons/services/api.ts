@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from "axios";
 import Cookies from "js-cookie";
 export default class ApiService {
-  public API_NEST_URL = "http://localhost:4000/";
+  public API_NEST_URL = "https://api-pulpo.recreando.dev/";
 
   http: AxiosInstance = axios.create({
     timeout: 50000,
