@@ -17,6 +17,19 @@
             <v-list-item-title v-text="item.title" />
           </v-list-item-content>
         </v-list-item>
+        <v-list-item
+          router
+          exact
+          style="height: 50px; max-height: 10px; min-height: 40px"
+          @click="logout()"
+        >
+          <v-list-item-action style="height: 50px">
+            <v-icon>mdi-account</v-icon>
+          </v-list-item-action>
+          <v-list-item-content class="pt-0 pb-0">
+            <v-list-item-title v-text="'Cerrar Session'" />
+          </v-list-item-content>
+        </v-list-item>
       </v-list>
     </v-navigation-drawer>
     <v-app-bar clipped-left fixed app dense>
@@ -34,22 +47,18 @@
 
 <script lang="ts">
 import { defineComponent , ref } from "vue";
+import { useAuth } from "../commons/hooks/useAuth";
 export default defineComponent({
   // middleware: "authRedirect",
   setup() {
-
+  const {  logout } = useAuth()
     const drawer = ref(false)
     const items = [
       {
         icon: 'mdi-card',
         title: 'Vehiculos',
         to: '/',
-      },
-      {
-        icon: 'mdi-account',
-        title: 'Usuarios',
-        to: '/users',
-      },
+      }
     ]
 
     const title = 'Pulpo'
@@ -57,6 +66,7 @@ export default defineComponent({
     return {
       title,
       items,
+      logout,
       drawer
     }
   },

@@ -7,6 +7,7 @@
       @cancel="cancel"
     />
     <v-btn
+      v-if="canAdd"
       color="success"
       class="right mr-6"
       style="float: right"
@@ -33,10 +34,10 @@
           </v-chip>
         </template>
         <template #item.acciones="{ item, index }">
-          <v-btn icon @click="edit(item)">
+          <v-btn v-if="canEdit" icon @click="edit(item)">
             <v-icon color="blue"> mdi-pencil </v-icon>
           </v-btn>
-          <v-btn icon @click="remove(item, index)">
+          <v-btn v-if="canRemove" icon @click="remove(item, index)">
             <v-icon color="red"> mdi-delete </v-icon>
           </v-btn>
         </template>
@@ -52,14 +53,16 @@ import { vehiclesService } from '../commons/services'
 import { dialog } from '../commons/share/state/dialog'
 import { Paginate } from '../commons/types/paginate.model'
 import { Vehicle } from '../commons/types/vehicles.model'
+import { useAuth } from '../commons/hooks/useAuth'
 import DialogVehicle from '../components/forms/VehicleForm.vue'
 
 const index = defineComponent({
   components: {
     DialogVehicle,
   },
-  middleware: "authRedirect",
+  middleware: 'authRedirect',
   setup() {
+    const { user, canAdd, canEdit, canRemove } = useAuth()
     const search = ref('')
     const vehicles = ref<Paginate<Vehicle>>({
       data: [],
@@ -96,7 +99,7 @@ const index = defineComponent({
     const injectData = (data: Vehicle) => {
       vehicles.value.data.push(data)
     }
-    const cancel = ()=>{
+    const cancel = () => {
       vehicle.value = {} as Vehicle
     }
     onMounted(() => {
@@ -104,6 +107,10 @@ const index = defineComponent({
     })
 
     return {
+      canAdd,
+      canEdit,
+      canRemove,
+      user,
       headersVehicles,
       vehicle,
       vehicles,

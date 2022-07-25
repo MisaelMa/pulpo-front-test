@@ -20,8 +20,8 @@
           max-width="400"
           style="border-radius: 10px"
         >
-          <v-card-title class="d-flex justify-center">
-            <Logo />
+          <v-card-title class="d-flex justify-center blue">
+            <img src="https://info.getpulpo.com/hubfs/blog-template-2022/pulpo-footer.svg" />
           </v-card-title>
           <v-card-title class="justify-center">
             <h3 class="d-flex text1">Iniciar Sesiòn</h3>
