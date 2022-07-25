@@ -144,6 +144,10 @@ export default defineComponent({
           dialog.dVehicle = !dialog.dVehicle
           close()
         }
+      } else {
+        // form.value.inputs.map((input)=>{
+        //   console.log(input.$attrs,input.valid)
+        // })
       }
     }
 
